@@ -47,7 +47,7 @@ const MOCK_PETS: Pet[] = [
     isInterested: true,
     consent: "granted",
     adoption: true,
-    completed: true,
+    completed: false,
   },
 ];
 
@@ -138,20 +138,20 @@ export default function InterestPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] pb-24">
-      <div className="bg-white border-b border-gray-100 h-20 mb-8" />
+    <div className="min-h-screen bg-[white] pb-24" style={{ fontFamily: "Poppins, sans-serif" }}>
+      <div className="bg-white h-6" />
 
-      <div className="max-w-[1240px] mx-auto px-6 lg:px-8">
+      <div className="max-full px-4 lg:px-20">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-          <h1 className="text-[22px] font-bold text-[#0D162B]">
+            <h1 className="text-[20px] font-semibold text-[#001323]" style={{ lineHeight: "36px" }}>
             Interest ({filteredPets.length})
-          </h1>
+            </h1>
 
           <div className="flex flex-wrap items-center gap-3">
             <div className="relative w-full sm:w-[220px]">
               <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
                 <svg
-                  className="w-[18px] h-[18px] text-gray-400"
+                  className="w-4.5 h-4.5 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -213,11 +213,11 @@ export default function InterestPage() {
 
         {filteredPets.length > 0 ? (
           <div>
-            <div className="hidden lg:grid grid-cols-[2fr_1.2fr_1.2fr_1.5fr] gap-6 px-6 pb-3 text-[12px] font-semibold text-gray-400 uppercase tracking-wider">
-              <span>Pet Details</span>
+            <div className="hidden lg:grid grid-cols-[2fr_1.2fr_1.2fr_1.5fr] gap-6 pb-3 text-[14px] font-semibold text-[#001323] uppercase tracking-wider">
+              <span>Details</span>
               <span>Location</span>
               <span>Status</span>
-              <span>Actions</span>
+              <span></span>
             </div>
 
             <div className="flex flex-col gap-3">

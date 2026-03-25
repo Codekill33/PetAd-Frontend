@@ -3,4 +3,5 @@ export type AdoptionStatus =
   | "ESCROW_FUNDED"
   | "SETTLEMENT_TRIGGERED"
   | "DISPUTED"
-  | "FUNDS_RELEASED";
+  | "FUNDS_RELEASED"
+  | "CUSTODY_ACTIVE";

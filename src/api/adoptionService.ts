@@ -1,3 +1,5 @@
+import { apiClient } from "../lib/api-client";
+
 export interface AdoptionRating {
   rating: number;
   feedback: string;
@@ -15,5 +17,9 @@ export const adoptionService = {
 
     // Mock successful submission
     return Promise.resolve();
+  },
+
+  async completeAdoption(adoptionId: string): Promise<void> {
+    await apiClient.post(`/adoption/${adoptionId}/complete`);
   },
 };

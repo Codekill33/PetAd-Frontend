@@ -16,3 +16,4 @@ export {
 	type CustodyTimelineEventType,
 	type UseCustodyTimelineOptions,
 } from "./useCustodyTimeline";
+export { useRealTimeStatusPolling } from "./useRealTimeStatusPolling";

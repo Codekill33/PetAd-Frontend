@@ -7,7 +7,19 @@ export interface CustodyTimelineEvent {
   stellarExplorerUrl?: string;
 }
 
+export interface CustodyDetails {
+  id: string;
+  status: string;
+  petId: string;
+  adopterId: string;
+  createdAt: string;
+}
+
 export const custodyService = {
+  async getDetails(custodyId: string): Promise<CustodyDetails> {
+    return apiClient.get<CustodyDetails>(`/custody/${custodyId}`);
+  },
+
   async getTimeline(custodyId: string): Promise<CustodyTimelineEvent[]> {
     return apiClient.get<CustodyTimelineEvent[]>(
       `/custody/${custodyId}/timeline`,

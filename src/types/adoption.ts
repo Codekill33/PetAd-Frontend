@@ -43,3 +43,13 @@ export interface CustodyDetails {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface TimelineEntry {
+  fromStatus: AdoptionStatus | null;
+  toStatus: AdoptionStatus;
+  actor: string;
+  reason?: string;
+  sdkTxHash?: string;
+  stellarExplorerUrl?: string;
+  timestamp: string;
+}

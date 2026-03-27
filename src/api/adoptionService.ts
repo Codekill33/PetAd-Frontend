@@ -1,9 +1,5 @@
-export interface AdoptionRating {
-  rating: number;
-  feedback: string;
-  adoptionId?: string;
-  petId?: string;
-}
+import { apiClient } from "../lib/api-client";
+import type { ApprovalDecisionPayload, AdoptionRating } from "../types/adoption";
 
 export const adoptionService = {
   async submitRating(ratingData: AdoptionRating): Promise<void> {
@@ -15,5 +11,9 @@ export const adoptionService = {
 
     // Mock successful submission
     return Promise.resolve();
+  },
+
+  async approveAdoption(id: string, payload: ApprovalDecisionPayload): Promise<void> {
+    return apiClient.post(`/adoption/${id}/approve`, payload);
   },
 };

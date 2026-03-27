@@ -3,6 +3,8 @@ export type AdoptionStatus =
   | "ESCROW_FUNDED"
   | "SETTLEMENT_TRIGGERED"
   | "DISPUTED"
+  | "FUNDS_RELEASED"
+  | "CUSTODY_ACTIVE"
   | "FUNDS_RELEASED";
 
 export interface AdoptionRating {
@@ -31,4 +33,13 @@ export interface ApprovalItem {
   notes: string | null;
   createdAt: string;
   resolvedAt: string | null;
+}
+
+export interface AdoptionTimelineEntry {
+  id: string;
+  adoptionId: string;
+  timestamp: string;
+  sdkEvent: string;
+  message: string;
+  actor?: string;
 }

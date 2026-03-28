@@ -1,10 +1,12 @@
 import { apiClient } from "../lib/api-client";
+import type { AdoptionTimelineEntry } from "../types/adoption";
 
-import type { 
-  ApprovalDecisionPayload, 
-  AdoptionRating, 
-  AdoptionTimelineEntry 
-} from "../types/adoption";
+export interface AdoptionRating {
+  rating: number;
+  feedback: string;
+  adoptionId?: string;
+  petId?: string;
+}
 
 export const adoptionService = {
   async submitRating(ratingData: AdoptionRating): Promise<void> {
@@ -18,22 +20,19 @@ export const adoptionService = {
     return Promise.resolve();
   },
 
-async approveAdoption(id: string, payload: ApprovalDecisionPayload): Promise<void> {
-  return apiClient.post(`/adoption/${id}/approve`, payload);
-},
-
-async completeAdoption(adoptionId: string): Promise<void> {
-  const response = await apiClient.post(`/adoption/${adoptionId}/complete`);
-  if (!response.ok) {
-    throw new Error("Failed to update adoption");
-  }
-  return response.json();
-},
-
-async getTimeline(adoptionId: string): Promise<AdoptionTimelineEntry[]> {
-  const response = await fetch(`/api/adoption/${adoptionId}/timeline`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch timeline");
-  }
-  return response.json();
-}
+  async completeAdoption(adoptionId: string): Promise<void> {
+   const response = await apiClient.post(`/adoption/${adoptionId}/complete`);
+    if (!response.ok) {
+        throw new Error("Failed to update adoption");
+    }
+    return response.json();
+  },
+  
+  async getTimeline(adoptionId: string): Promise<AdoptionTimelineEntry[]> {
+    const response = await fetch(`/api/adoption/${adoptionId}/timeline`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch timeline");
+    }
+    return response.json();
+  },
+};

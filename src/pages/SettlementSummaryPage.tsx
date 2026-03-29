@@ -94,11 +94,11 @@ export function SettlementSummaryPage({
     : propSummary?.escrow.txHash;
 
   const totalAmount = data?.payments.reduce((sum, p) => sum + p.amount, 0) ?? 0;
-  const escrowStatus: EscrowStatus | undefined = propSummary?.status 
-    ? propSummary.status 
+  const escrowStatus: EscrowStatus | undefined = propSummary?.status
+    ? propSummary.status
     : data?.onChainStatus
-    ? ON_CHAIN_TO_ESCROW_STATUS[data.onChainStatus]
-    : undefined;
+      ? ON_CHAIN_TO_ESCROW_STATUS[data.onChainStatus]
+      : undefined;
 
   const headline = propSummary?.headline || "Settlement Summary";
   const description = propSummary?.description || (adoptionId ? `Adoption #${adoptionId}` : "");
@@ -115,14 +115,11 @@ export function SettlementSummaryPage({
         {/* ── Actions / Banners ── */}
         {escrowStatus === "FUNDED" && propSummary && (
           <EscrowFundedBanner
-<EscrowFundedBanner
-  adoptionId={escrow.adoptionId}
-  petName={escrow.petName}
-  amount={propSummary.escrow.amount}
-  currency={propSummary.escrow.currency}
-  txHash={escrow.txHash}
-  escrowId={propSummary.escrow.escrowId}
-/>
+            adoptionId={propSummary.escrow.adoptionId}
+            petName={propSummary.escrow.petName}
+            amount={propSummary.escrow.amount}
+            currency={propSummary.escrow.currency}
+            txHash={propSummary.escrow.txHash}
           />
         )}
 
@@ -153,7 +150,7 @@ export function SettlementSummaryPage({
                 Settlement Failed
               </h2>
               <p className="text-sm text-red-700 mt-1">
-                {propSummary?.escrow.failureReason || 
+                {propSummary?.escrow.failureReason ||
                  "The payout could not be completed. Please review the transaction and retry."}
               </p>
             </div>
@@ -211,9 +208,7 @@ export function SettlementSummaryPage({
           {/* Data rows */}
           {!isLoading && data && data.payments.length > 0 && (
             <>
-              {/* Column headers */}
-              <div className="grid grid-cols-3 px-4 py-2 bg-gray-50
-                              text-xs font-semibold uppercase tracking-wide text-gray-500">
+              <div className="grid grid-cols-3 px-4 py-2 bg-gray-50 text-xs font-semibold uppercase tracking-wide text-gray-500">
                 <span>Recipient</span>
                 <span className="text-right">Amount</span>
                 <span className="text-right">Share</span>
@@ -225,7 +220,6 @@ export function SettlementSummaryPage({
                     key={payment.id}
                     className="grid grid-cols-3 px-4 py-3 items-center"
                   >
-                    {/* Destination address as recipient name */}
                     <span
                       className="text-sm text-gray-900 truncate"
                       title={payment.destination}
@@ -233,7 +227,6 @@ export function SettlementSummaryPage({
                       {payment.destination}
                     </span>
 
-                    {/* Amount in XLM/asset */}
                     <span className="text-sm font-semibold text-gray-900 text-right">
                       {payment.amount.toLocaleString(undefined, {
                         minimumFractionDigits: 2,
@@ -242,7 +235,6 @@ export function SettlementSummaryPage({
                       {payment.asset}
                     </span>
 
-                    {/* Percentage of total */}
                     <span className="text-sm text-gray-500 text-right">
                       {formatPercentage(payment.amount, totalAmount)}
                     </span>
